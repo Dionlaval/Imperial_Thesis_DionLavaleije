@@ -1,0 +1,61 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+\input{preamble}          % packages & settings (spacing, margins, refs)
+\addbibresource{references.bib} % your BibLaTeX database
+
+\begin{document}
+
+% --- Title page (PAGE i, number not shown) ---
+\pagenumbering{roman}
+\setcounter{page}{1}
+\input{titlepage}
+
+% --- Abstract (PAGE ii, first visible page number) ---
+\clearpage
+\setcounter{page}{2} % now explicitly ii
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+% Your abstract text here.
+
+% --- Acknowledgements ---
+\clearpage
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+% Thank your supervisor, co-supervisor, staff, etc.
+
+% --- Contents & Lists (Roman numerals end here) ---
+\clearpage
+\tableofcontents
+\listoffigures
+\listoftables
+% Optional: List of Plates if you decide to use the 'plate' float
+% \listofplates
+
+\clearpage
+\pagenumbering{arabic} % PAGE 1 starts at Chapter 1 (Introduction)
+
+% --- Chapters (your provided skeleton) ---
+\input{chapters/01-introduction}
+\input{chapters/02-literature}
+\input{chapters/03-methodology}
+\input{chapters/04-results}
+\input{chapters/05-conclusion}
+
+% --- AI-Assisted Writing Declaration (between Conclusions and References) ---
+\clearpage
+\section*{AI-Assisted Writing Declaration}
+\addcontentsline{toc}{section}{AI-Assisted Writing Declaration}
+% Example (edit as appropriate):
+% I used ChatGPT to refine phrasing in Section 3.4, to draft figure captions,
+% and to generate LaTeX boilerplate for references and formatting.
+
+% --- References ---
+\clearpage
+\printbibliography
+
+% --- Appendices come AFTER references ---
+\appendix
+\chapter{Additional Data}
+% Appendices should not contain essential material for examiners.
+
+\end{document}

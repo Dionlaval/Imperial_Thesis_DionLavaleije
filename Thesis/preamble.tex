@@ -1,0 +1,53 @@
+% -------- Encoding & Language ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+
+% -------- Page Layout per guidelines ----------
+\usepackage[a4paper,margin=2.54cm]{geometry} % Normal Word margins (2.54cm each side)
+\usepackage{setspace}
+\onehalfspacing % 1.5 line spacing
+
+% -------- Typography & Math ----------
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+
+% -------- Figures, Tables ----------
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% -------- Hyperlinks & Clever refs ----------
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+% -------- Optional: Plates (photographs) list ----------
+% Enable a 'plate' float if you want a separate List of Plates
+% \usepackage{float}
+% \newfloat{plate}{htbp}{lop}[chapter]
+% \floatname{plate}{Plate}
+% \newcommand{\listofplates}{\listof{plate}{List of Plates}}
+
+% -------- Bibliography (pick ONE of the two options below) ----------
+% Option A: NUMERIC system (compact, journal-like)
+\usepackage[backend=biber,style=numeric,sorting=none,doi=false,isbn=false,url=true,eprint=false]{biblatex}
+% Cite examples: \cite{key} → [1]; \parencite{key} also works.
+
+% Option B (comment A & uncomment B to switch):
+% Harvard-style (author–year) per “Harvard system” description
+% \usepackage[backend=biber,style=authoryear,doi=false,isbn=false,url=true,eprint=false]{biblatex}
+% Cite examples: \textcite{key} → Author (Year); \parencite{key} → (Author, Year).
+
+% -------- Headers/Footers (page numbers at bottom centre/right) ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear
+\fancyfoot[C]{\thepage} % centre footer page number (allowed by guidelines)
+% If you prefer right-aligned instead, use:
+% \fancyfoot[C]{} \fancyfoot[R]{\thepage}
+
+% -------- Handy macros ----------
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
