@@ -1,0 +1,58 @@
+\chapter{Methodology}
+
+\section{Overview of Research Approach}
+\begin{itemize}
+    \item Two-stage methodology: numerical simulation and physical testing.
+    \item Aim: identify key nonlinear dynamic behaviours using Gaussian Process Regression (GPR) and Bayesian Optimisation (BO) within a control-based testing framework.
+    \item Rationale for selecting this approach over conventional uniform sampling methods.
+\end{itemize}
+
+\section{Simulation Stage}
+\begin{itemize}
+    \item Development of a nonlinear beam model (Duffing-type nonlinearity) in MATLAB.
+    \item Simulation of steady-state response to harmonic forcing.
+    \item Inclusion of artificial noise to emulate measurement uncertainty.
+    \item Implementation of BO + GPR for adaptive frequency/amplitude test point selection.
+    \item Simulation workflow and data processing steps.
+\end{itemize}
+
+\section{Physical Testing Stage}
+\begin{itemize}
+    \item Initial plan: testing on a Rolls-Royce rotor blade test rig.
+    \item Reasons for switching to simplified beam-spring (thin ruler) setup.
+    \item Description of experimental setup:
+    \begin{itemize}
+        \item Geometry and boundary conditions.
+        \item Instrumentation: accelerometers, force sensors, data acquisition system.
+        \item Excitation method and control hardware.
+    \end{itemize}
+    \item Control-based testing methodology for stabilising and measuring responses.
+\end{itemize}
+
+\section{Control-Based Testing Implementation}
+\begin{itemize}
+    \item Control strategy for maintaining desired frequency/amplitude.
+    \item Feedback control loop design.
+    \item Modifications required for testing simplified setup.
+\end{itemize}
+
+\section{Data Processing and Modelling}
+\begin{itemize}
+    \item Frequency Response Function (FRF) estimation from force and displacement/acceleration measurements.
+    \item Training of GPR models on collected datasets.
+    \item Use of BO to select subsequent test points based on model uncertainty.
+    \item Stopping criteria for experimental campaigns.
+\end{itemize}
+
+\section{Evaluation Metrics}
+\begin{itemize}
+    \item Prediction accuracy compared to uniform sampling baseline.
+    \item Reduction in number of test points required.
+    \item Time efficiency compared to traditional methods.
+\end{itemize}
+
+\section{Summary}
+\begin{itemize}
+    \item Recap of methodology and its alignment with project objectives.
+    \item Transition to results and analysis chapter.
+\end{itemize}

@@ -1,0 +1,53 @@
+\chapter{Results}
+
+\section{Overview}
+\begin{itemize}
+    \item Structure of results presentation: simulation results, physical testing results, and comparative analysis.
+    \item Brief reminder of objectives and evaluation metrics from Chapter~\ref{chap:Methodology}.
+\end{itemize}
+
+\section{Simulation Results}
+\begin{itemize}
+    \item Accuracy of GPR model at different numbers of test points.
+    \item BO performance in identifying nonlinear features (e.g., backbone curve, bifurcation points).
+    \item Visualisations:
+    \begin{itemize}
+        \item FRF plots for selected amplitudes/frequencies.
+        \item Response surface predictions with uncertainty bands.
+        \item Acquisition function maps showing selected test points.
+    \end{itemize}
+    \item Quantitative comparison with uniform sampling:
+    \begin{itemize}
+        \item Prediction error metrics.
+        \item Number of test points saved.
+        \item Computational time comparisons.
+    \end{itemize}
+\end{itemize}
+
+\section{Physical Testing Results}
+\begin{itemize}
+    \item Experimental FRFs from simplified beam-spring setup.
+    \item Examples of observed nonlinear phenomena (e.g., amplitude-dependent frequency shift, jump phenomena).
+    \item GPR model performance on experimental data.
+    \item BO-driven test point selection in practice.
+    \item Visualisations:
+    \begin{itemize}
+        \item Experimental vs predicted FRFs.
+        \item Selected test points overlaid on measured data.
+        \item Uncertainty reduction plots over iterations.
+    \end{itemize}
+\end{itemize}
+
+\section{Comparison Between Simulation and Experiment}
+\begin{itemize}
+    \item Agreement in identified nonlinear features.
+    \item Differences attributed to experimental noise, simplifications in the beam model, or measurement limitations.
+    \item Discussion on the method’s robustness across simulation and real-world conditions.
+\end{itemize}
+
+\section{Summary of Findings}
+\begin{itemize}
+    \item Key quantitative and qualitative results.
+    \item Observed advantages and limitations of BO + GPR in control-based testing.
+    \item Lead-in to discussion and interpretation in Chapter~\ref{chap:Discussion}.
+\end{itemize}
