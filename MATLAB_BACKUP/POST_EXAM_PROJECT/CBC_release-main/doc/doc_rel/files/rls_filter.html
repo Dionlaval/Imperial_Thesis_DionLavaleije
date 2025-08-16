@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RLS Filter</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Recursive Least Squares (RLS) Filter</h1>
+    <p>
+        The <strong>Recursive Least Squares (RLS) filter</strong> is an adaptive filtering algorithm used for precise
+        and rapid harmonic estimation. Unlike the Least Mean Squares (LMS) filter, the RLS filter minimises the
+        estimation error by continuously updating its internal weight coefficients using an exponentially weighted least
+        squares criterion. This makes it highly effective for real-time signal tracking, adaptive modelling, and dynamic
+        system identification.
+    </p>
+
+    <h2>Functionality</h2>
+    <p>
+        The RLS filter operates by adjusting its internal weights based on incoming data, ensuring that the estimated
+        signal closely matches the input. It requires a harmonic basis input signal that consists of predefined sine and
+        cosine components, enabling accurate harmonic estimation.
+    </p>
+
+    <h2>Inputs</h2>
+    <ul>
+        <li><strong>Input Signal:</strong> The primary signal that the RLS filter aims to estimate.</li>
+        <li><strong>Harmonic Basis:</strong> A structured signal containing sine and cosine components at different
+            harmonic frequencies. The input signal size must be fixed at <code>1 × 17</code>. The provided Harmonic
+            Basis Generator block ensures compatibility with this requirement.</li>
+    </ul>
+
+    <h2>Outputs</h2>
+    <ul>
+        <li><strong>Estimated Signal:</strong> The reconstructed signal based on the RLS filter’s adaptive estimation of
+            harmonic components.</li>
+        <li><strong>Harmonic Coefficients:</strong> A set of adaptive weights corresponding to the contribution of each
+            harmonic component in the estimated signal.</li>
+    </ul>
+
+    <h2>Internal Variables</h2>
+    <p>
+        The RLS filter relies on internal variables for adaptation and control:
+    </p>
+    <ul>
+        <li><code>rls_var_delta</code> – A regularisation parameter that prevents instability in the early iterations.
+            The default value is <code>1</code>.</li>
+        <li><code>rls_var_lambda</code> – The forgetting factor that determines the influence of past data on the
+            current estimation. The default value is <code>0.95</code>. A value close to <code>1</code> ensures
+            long-term memory, while lower values emphasise recent data.</li>
+    </ul>
+
+    <h2>Usage Considerations</h2>
+    <ul>
+        <li>The harmonic basis signal must always be of size <code>1 × 17</code> to ensure correct operation.</li>
+        <li>The forgetting factor should be tuned carefully to balance adaptability and stability.</li>
+        <li>The estimated harmonic coefficients can be used for further signal analysis or reconstruction.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        The RLS filter is a powerful and efficient tool for real-time adaptive filtering and harmonic estimation. Its
+        rapid convergence and precision make it ideal for applications requiring dynamic system modelling and signal
+        tracking.
+    </p>
+</body>
+
+</html>

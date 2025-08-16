@@ -1,0 +1,59 @@
+<?xml version='1.0'?>
+<Table_List nTables="#2" U="#0">
+<Table0 Type="Params" NParams="#b" Name="RunInfo" Cat="RunInfo" U="#0" NAR="#b">
+<P0 K="TestName" V="D:\Anya - Urop - Releasemechanism\Dion_Transferfunction_Hammer.trf" />
+<P1 K="TestDate" V="24/07/2025" />
+<P2 K="RunName" V="" />
+<P3 K="RunNumber" V="00002" />
+<P4 K="RunDate" V="24/07/2025" />
+<P5 K="RunComment" V="" />
+<P6 K="SaveName" V="" />
+<P7 K="SaveTime" V="15:25:02" />
+<P8 K="SaveDate" V="24/07/2025" />
+<P9 K="SaveNumber" V="1" />
+<P10 K="ElapsedTime" V="00:02:26" />
+</Table0>
+<Table1 Type="Params" NParams="#29" Name="Setup" Cat="Setup" U="#0" NAR="#13">
+<P0 K="Fspan" V="1000" />
+<P1 K="Lines" V="6400" />
+<P2 K="AvgNum" V="3" />
+<P3 K="Trigger" V="Input" />
+<P4 K="Pacing" V="Off" />
+<P5 K="Step" V="0" />
+<P6 K="DeltaF" V="0.15625" />
+<P7 K="DeltaT" V="  0.00039063" />
+<P8 K="Tspan" V="6.4" />
+<P9 K="Blocksize" V="16384" />
+<P10 K="Overlap" V="0.0%" />
+<P11 K="RPMmode" V="RPM Off" />
+<P12 K="PreviewAverage" V="On" />
+<P13 K="Frames" V="3" />
+<P14 K="Window" V="F/Exp" />
+<P15 K="AvgType" V="Exp" />
+<P16 K="WFRecords" V="20" />
+<P17 K="SRSDamping" V="" />
+<P18 K="SRSResolution" V="" />
+<P19 K="Ch.InpInpName.1" V="I1" />
+<P20 K="Ch.InpInpSensitivity.1" V="2.25" />
+<P21 K="Ch.InpInpRange.1" V="1" />
+<P22 K="Ch.InpInpCoupling.1" V="ICP" />
+<P23 K="Ch.InpInpRangeEU.1" V="444.444" />
+<P24 K="Ch.InpInpEU.1" V="N" />
+<P25 K="Ch.InpInpWindow.1" V="Force" />
+<P26 K="Ch.InpInpComment.1" V="InpInpComment.1 (none) " />
+<P27 K="Ch.InpInpName.2" V="I2" />
+<P28 K="Ch.InpInpSensitivity.2" V="1.073" />
+<P29 K="Ch.InpInpRange.2" V="1" />
+<P30 K="Ch.InpInpCoupling.2" V="ICP" />
+<P31 K="Ch.InpInpRangeEU.2" V="931.966" />
+<P32 K="Ch.InpInpEU.2" V="m/s&#178;" />
+<P33 K="Ch.InpInpWindow.2" V="Exponential" />
+<P34 K="Ch.InpInpComment.2" V="InpInpComment.2 (none) " />
+<P35 K="Ch.TacTacName.1" V="T1" />
+<P36 K="Ch.TacTacPPR.1" V="1" />
+<P37 K="Ch.TacTacRollDiameter.1" V="1" />
+<P38 K="Ch.TacTacRollDiameterEU.1" V="ft" />
+<P39 K="Ch.TacTacComment.1" V="TacTacComment.1 (none) " />
+<P40 K="Ch.TacTacAngle.1" V="0" />
+</Table1>
+</Table_List>

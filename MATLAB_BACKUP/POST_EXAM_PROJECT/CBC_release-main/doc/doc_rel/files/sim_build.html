@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulink Build</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Optional Centred Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Simulink Build</h1>
+    <p>
+        Once you have created your Simulink model using the library blocks, you must build your model to prepare it for
+        execution on the dSPACE MicroLabBox. It is essential that dSPACE software is installed on your system and
+        correctly configured with MATLAB.
+    </p>
+
+    <h2>Model Requirements</h2>
+    <p>
+        To interface with the MicroLabBox, your Simulink model must be based on the <strong>RTI1202 model
+            template</strong>. This template is specifically designed to communicate with the dSPACE hardware and should
+        be used when creating your model. Similarly, all library blocks provided with this software should be opened and
+        used within this template.
+    </p>
+
+    <h2>Building the Model</h2>
+    <p>
+        Once your Simulink model is complete, it must be built before execution. This process can be initiated in two
+        ways:
+    </p>
+    <ul>
+        <li>Using the <code>model_build</code> function. (preferred)</li>
+        <li>Manually load all required internal variables of the blocks used, the press <code>Ctrl + B</code> in
+            Simulink.</li>
+    </ul>
+    <p>
+        It is important that all internal variables of the library blocks are first loaded, before the model is built.
+        Using <code>model_build</code> to build the model will do this automatically, which is why it is the preferred
+        build method.
+    </p>
+
+    <p>
+        <strong>Required MATLAB Add-on:</strong> Ensure that <em>MATLAB Support for MinGW-w64 C/C++/Fortran
+            Compiler</em> is installed, as it is necessary for the build process.
+    </p>
+
+    <h2>Understanding the Build Process</h2>
+    <p>
+        The build process in Simulink translates your graphical model into executable C code, which is compiled and
+        linked against the dSPACE runtime environment. This process generates an SDF (Simulation Data File), which
+        dSPACE software can then execute in real time.
+    </p>
+
+    <h2>Running the Built Model</h2>
+    <p>
+        Once the model is successfully built, it can be deployed and controlled using:
+    </p>
+    <ul>
+        <li><strong>dSPACE ControlDesk:</strong> Load the generated <code>.sdf</code> file within ControlDesk to execute
+            and monitor the model in real time.</li>
+        <li><strong>Software Interface:</strong> The interface provided with this software can also be used to control
+            the built model separately.</li>
+    </ul>
+
+    <h2>Common Build Errors and Solutions</h2>
+    <p>
+        Certain build errors may occur due to missing dependencies or configuration issues. Below are common errors and
+        their solutions:
+    </p>
+    <dl>
+        <dt><strong>Missing TLC File Error</strong></dt>
+        <dd>
+            <pre><code>Error: RTI Assert: Cannot find TLC file rti120xdac_c1_dac.tlc required by block signal_DAC/DAC_CLASS1_BL1/S-Function1.</code></pre>
+            <strong>Solution:</strong> Run the following command in MATLAB and rebuild:
+            <pre><code>addpath("C:\Program Files\dSPACE RCPHIL 2023-A\MATLAB\RTI\RTI1202\TLC");</code></pre>
+        </dd>
+
+        <dt><strong>Access Denied by dSPACE XIL Server</strong></dt>
+        <dd>
+            <pre><code>Error: Access denied by host 'ME-DYN-DPSACE', application 'dSPACEXILServer.exe'. Close the listed application to gain access to this hardware device. [1905281.475] 
+The call to rti1202_make_rtw_hook, during the after_make hook generated the following error:
+    *** Stopped RTI build procedure</code></pre>
+            <strong>Solution:</strong> Close <code>dSPACEXILServer.exe</code> manually from Task Manager
+            (<code>Ctrl + Shift + Esc</code>) and attempt the build again.
+        </dd>
+    </dl>
+
+    <h2>Important Notes on Protected Blocks</h2>
+    <p>
+        If your model includes protected blocks with internal variables, ensure that these variables are loaded into the
+        MATLAB workspace before initiating the build process. Failure to do so will result in build errors related to
+        missing variables.
+    </p>
+    <p>
+        However, once the model is successfully built, these variables are embedded within the generated files. This
+        means that they will no longer need to be manually loaded when running the model in ControlDesk or via the
+        provided software interface.
+    </p>
+
+    <h2>Using the model_build Function</h2>
+    <p>
+        In addition to the standard build methods, the <code>model_build</code> function has been developed to automate
+        the process of loading protected block parameters and building the model. This function is particularly useful
+        when working with models that utilise blocks containing internal variables, as it ensures that all required
+        parameter files are loaded into the MATLAB workspace prior to the build.
+    </p>
+    <p>
+        The function may be executed from a parent directory. For instance, if your Simulink model
+        <code>model.slx</code>
+        is located in the subdirectory <code>foo/bar/</code>, you can invoke the function as follows:
+    </p>
+    <pre><code>model_build("foo/bar/model.slx");</code></pre>
+    <p>
+        When invoked, the function will change into the model's directory, load the model, process all blocks to load
+        any associated parameter files, and build the C code for the model using <code>rtwbuild</code>. This ensures
+        that all build files are stored alongside the model, and that the build environment is correctly
+        configured with all necessary variables.
+    </p>
+    <p>
+        The internal variables that loaded will remain in the workspace for reference, which can be safely deleted
+        before using the dSPACE interface.
+    </p>
+</body>
+
+
+</html>

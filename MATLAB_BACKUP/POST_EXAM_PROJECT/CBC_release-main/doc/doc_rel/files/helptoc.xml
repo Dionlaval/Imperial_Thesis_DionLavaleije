@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding="utf-8"?>
+<toc version="2.0">
+
+    <!-- Landing page -->
+    <tocitem target="landing.html">CBC Software
+
+        <tocitem target="setup.html">Setup and Installation</tocitem>
+        <tocitem target="lib_block.html">Library and Block Import</tocitem>
+        <tocitem target="sim_build.html">Simulink Build</tocitem>
+        <tocitem target="dspace_interface.html">dSPACE Interface</tocitem>
+        <tocitem target="select_subtopic.html#h1">Simulink Blocks
+            <tocitem target="hrm_basis.html">Harmonic Basis Generator</tocitem>
+            <tocitem target="select_subtopic.html#h2">Filters
+                <tocitem target="lms_filter.html">Least Mean Squares (LMS)</tocitem>
+                <tocitem target="rls_filter.html">Recursive Least Squares (RLS)</tocitem>
+            </tocitem>
+            <tocitem target="dspace_inout.html">dSPACE Input/Output</tocitem>
+            <tocitem target="select_subtopic.html#h3.html">Control
+                <tocitem target="pid_control.html">PID Controller</tocitem>
+                <tocitem target="state_obs.html">State Observer</tocitem>
+            </tocitem>
+        </tocitem>
+
+    </tocitem>
+
+</toc>

@@ -1,0 +1,15 @@
+[System]
+Version=2.2
+SystemType=SingleProcessorSystem
+DAQService=DsDAQ
+DsDAQBackground=1
+Status=Start
+File=sample_model.rta
+RTP=Master
+
+[Master]
+Type=DS1202
+State=Enabled
+ServiceID=1
+TraceFile=sample_model.trc
+ID=ab5cbef6-3c4e-49e0-8262-7c3b2b967692

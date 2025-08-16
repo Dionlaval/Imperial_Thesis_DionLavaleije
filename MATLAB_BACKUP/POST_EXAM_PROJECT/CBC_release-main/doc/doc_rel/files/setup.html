@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Setup</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Optional Centred Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Setup Guide</h1>
+    <p>Welcome to the setup guide for the MATLAB library. This document will guide you on how to properly set up and use
+        <code>setup_cbc.m</code> to initialise the environment.
+    </p>
+
+    <h2>Purpose of setup_cbc.m</h2>
+    <p>The <code>setup_cbc.m</code> script is designed to set up the MATLAB environment by:</p>
+    <ul>
+        <li>Ensuring the script runs from its own directory.</li>
+        <li>Extracting protected project blocks (<code>.mlproj</code> files) into folders.</li>
+        <li>Adding required directories to the MATLAB path.</li>
+        <li>Preparing the workspace for library usage.</li>
+    </ul>
+
+    <h2>How to Use setup_cbc.m</h2>
+    <p>To use the library, you need to run <code>setup_cbc.m</code> in MATLAB. Follow these steps:</p>
+    <ol>
+        <li>Navigate to the folder containing <code>setup_cbc.m</code> in MATLAB.</li>
+        <li>Run the script by typing:</li>
+        <pre>setup_cbc</pre>
+        <li>Wait for the script to finish. It will process the required files and set up the environment.</li>
+    </ol>
+
+    <h2>Understanding Project Blocks</h2>
+    <p>The setup script extracts protected blocks from <code>.mlproj</code> files and expands them into accessible
+        directories. These extracted folders are then added to the MATLAB path, ensuring all necessary components are
+        available.</p>
+
+    <h2>Library Path Configuration</h2>
+    <p>To properly use the library, all necessary files must be available on the MATLAB path. The setup script
+        automatically adds:</p>
+    <ul>
+        <li>The <code>src</code> directory and its subfolders.</li>
+        <li>Any extracted project folders.</li>
+        <li>The <code>library</code> directory and its subfolders.</li>
+    </ul>
+
+    <h2>Completion</h2>
+    <p>Once the script has completed successfully, you can start using the library components immediately. The necessary
+        files are now available on the MATLAB path.</p>
+</body>
+
+</html>

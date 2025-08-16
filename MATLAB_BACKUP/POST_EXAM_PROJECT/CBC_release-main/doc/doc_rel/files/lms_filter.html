@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LMS Filter</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Least Mean Squares (LMS) Filter</h1>
+    <p>
+        The <strong>Least Mean Squares (LMS) filter</strong> is an adaptive filtering algorithm designed for harmonic
+        estimation. It minimises the error between an input signal and its estimated harmonic reconstruction. This makes
+        it particularly effective for applications requiring real-time signal processing, harmonic analysis, and dynamic
+        signal modelling.
+    </p>
+
+    <h2>Functionality</h2>
+    <p>
+        The LMS filter operates by continuously updating its internal weight coefficients to match the input signal as
+        closely as possible. It requires a predefined harmonic basis signal, consisting of sine and cosine terms, to
+        estimate the harmonic content of the input.
+    </p>
+
+    <h2>Inputs</h2>
+    <ul>
+        <li><strong>Input Signal:</strong> The primary signal that the LMS filter is tasked with estimating.</li>
+        <li><strong>Harmonic Basis:</strong> A structured signal containing sine and cosine components corresponding to
+            different harmonic frequencies. The filter expects this input to have a fixed size of <code>1 × 17</code>.
+            If using the provided Harmonic Basis Generator, this requirement is automatically satisfied.</li>
+    </ul>
+
+    <h2>Outputs</h2>
+    <ul>
+        <li><strong>Estimated Signal:</strong> The reconstructed signal based on the LMS filter’s dynamic estimation of
+            harmonic components.</li>
+        <li><strong>Harmonic Coefficients:</strong> A set of weights corresponding to the contributions of each harmonic
+            component in the estimated signal. These coefficients indicate the magnitude of the sine and cosine terms at
+            different harmonic frequencies.</li>
+    </ul>
+
+    <h2>Internal Variable</h2>
+    <p>
+        The LMS filter has a single tunable internal variable:
+    </p>
+    <ul>
+        <li><code>lms_var_gain</code> – This controls the adaptation gain of the filter. It defaults to
+            <code>0.01</code> but can be adjusted to optimise performance.
+            <ul>
+                <li>Lower values (<code>&lt; 0.01</code>) may slow down convergence.</li>
+                <li>Higher values (<code>&gt; 0.2</code>) can lead to instability, causing the output to become
+                    <code>NaN</code>. It is advised to keep this value below <code>0.2</code> for reliable operation.
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Usage Considerations</h2>
+    <ul>
+        <li>The harmonic basis signal must always have a size of <code>1 × 17</code> to ensure compatibility with the
+            LMS filter.</li>
+        <li>The adaptation gain should be tuned carefully to balance convergence speed and stability.</li>
+        <li>The estimated harmonic coefficients can be used for further analysis or signal reconstruction.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        The LMS filter is a powerful tool for real-time harmonic estimation and adaptive signal processing. Its ability
+        to dynamically adjust to input variations makes it highly effective for various engineering applications,
+        particularly in signal reconstruction and adaptive filtering tasks.
+    </p>
+</body>
+
+</html>

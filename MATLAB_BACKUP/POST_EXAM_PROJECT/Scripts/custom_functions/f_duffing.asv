@@ -1,0 +1,9 @@
+function [dx] = f_duffing(t, x, model)
+    K = model.k/model.m;
+    C = model.c/model.m;
+    AL = model.alpha/model.m;
+
+    a = model.control_force(t) - K*x(1) - C*x(2) - AL*(x(1).^3);
+
+    dx = [x(2); a];
+end

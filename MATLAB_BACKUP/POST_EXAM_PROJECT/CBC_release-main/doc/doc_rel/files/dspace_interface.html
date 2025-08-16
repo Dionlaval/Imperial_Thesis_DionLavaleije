@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>dSPACE Interface</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>dSPACE Interface</h1>
+    <p>
+        The dSPACE interface provides a structured and reliable method for real-time interaction with Simulink models.
+        This document outlines the available functions and methods to allow users to manage parameters, start and stop
+        simulations, and log data efficiently.
+    </p>
+    <p>
+        It relies on two class files, namely <code>dspace_parameters.p</code> and
+        <code>dspace_interface_XILAPI.p</code>, which should be on the MATLAB path.
+    </p>
+
+    <h2>Configuration and Initialisation</h2>
+    <p>
+        The interface relies on the presence of the <code>MAPortConfig.xml</code> configuration file, which must be
+        located in the same directory as the Simulink model. This file specifies the system description file and
+        hardware platform being used.
+    </p>
+    <p>
+        Example content of <code>MAPortConfig.xml</code>:
+    </p>
+    <pre><code>&lt;MAPortConfig&gt;
+    &lt;SystemDescriptionFile&gt;sample_model.sdf&lt;/SystemDescriptionFile&gt;
+    &lt;PlatformName&gt;DS1202&lt;/PlatformName&gt;
+&lt;/MAPortConfig&gt;</code></pre>
+    <p>
+        To initialise the interface, use:
+    </p>
+    <pre><code>ds_rtc = signal_interface('MAPortConfig.xml');</code></pre>
+    <p>
+        This command establishes the connection and prepares the interface for further operations.
+    </p>
+
+    <h2>Parameter Management</h2>
+    <p>
+        The interface allows users to read and modify parameters in real-time. Parameters can be set or retrieved using
+        the following methods:
+    </p>
+    <ul>
+        <li><strong>Setting Parameters:</strong>
+            <pre><code>ds_rtc.set_par('parameter_name', value);</code></pre>
+            Updates the specified parameter within the Simulink model.
+        </li>
+        <li><strong>Alternative Parameter Setting:</strong>
+            <pre><code>ds_rtc.par.parameter_name = value;</code></pre>
+            This approach provides a more intuitive way to modify parameters without calling <code>set_par</code>.
+        </li>
+        <li><strong>Reading Parameters:</strong>
+            <pre><code>value = ds_rtc.get_par('parameter_name');</code></pre>
+            Retrieves the current value of the specified parameter.
+        </li>
+        <li><strong>Alternative Parameter Reading:</strong>
+            <pre><code>value = ds_rtc.par.parameter_name;</code></pre>
+            Provides a direct way to retrieve parameter values without using <code>get_par</code>.
+        </li>
+    </ul>
+
+    <h2>Simulation Control</h2>
+    <p>
+        Users can start and stop simulations using the following methods:
+    </p>
+    <ul>
+        <li><strong>Start Simulation:</strong>
+            <pre><code>ds_rtc.start_simulation();</code></pre>
+            Initiates execution of the model in real-time.
+        </li>
+        <li><strong>Stop Simulation:</strong>
+            <pre><code>ds_rtc.stop_simulation();</code></pre>
+            Terminates execution of the model.
+        </li>
+    </ul>
+
+    <h2>Data Streaming and Logging</h2>
+    <p>
+        The interface allows users to configure and retrieve logged data from dSPACE. Key functions include:
+    </p>
+    <ul>
+        <li><strong>Configuring a Data Stream:</strong>
+            <pre><code>ds_rtc.set_stream(stream_id, variables, num_samples, downsampling);</code></pre>
+            <ul>
+                <li><code>stream_id</code>: A numeric identifier for the stream (e.g., 1).</li>
+                <li><code>variables</code>: A cell array of variable names to record (e.g.,
+                    <code>{'out1', 'in1'}</code>).</li>
+                <li><code>num_samples</code>: Number of samples to record.</li>
+                <li><code>downsampling</code>: Factor by which data is downsampled (0 means no downsampling).</li>
+            </ul>
+        </li>
+        <li><strong>Starting a Data Stream:</strong>
+            <pre><code>ds_rtc.start_stream();</code></pre>
+            Begins recording data.
+        </li>
+        <li><strong>Retrieving Logged Data:</strong>
+            <pre><code>data = ds_rtc.get_stream();</code></pre>
+            Fetches the recorded data for post-processing.
+        </li>
+        <li><strong>Running a Stream Efficiently:</strong>
+            <pre><code>data = ds_rtc.run_stream('stream_id', 1, 'return_struct', true);</code></pre>
+            This method combines starting, waiting, and retrieving the stream into a single call, making it more
+            efficient than calling <code>start_stream</code> followed by <code>get_stream</code>.
+        </li>
+        <li><strong>Removing a Data Stream:</strong>
+            <pre><code>ds_rtc.remove_stream();</code></pre>
+            Clears previously defined streams to allow fresh data collection.
+        </li>
+    </ul>
+
+    <h2>Error Handling and Testing</h2>
+    <p>
+        The interface provides built-in methods for diagnosing connectivity and verifying functionality. Users can
+        execute the following test command to check for issues:
+    </p>
+    <pre><code>errors = ds_rtc.test_interface();</code></pre>
+    <p>
+        This command checks all defined variables and ensures that data logging functions correctly. Any encountered
+        errors will be logged for debugging.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+        The dSPACE interface provides a structured, efficient, and powerful approach to real-time Simulink model
+        interaction. Through its parameter management, simulation control, and data logging features, users can achieve
+        seamless integration and operational efficiency.
+    </p>
+</body>
+
+</html>

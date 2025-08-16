@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>dSPACE Input/Output Blocks</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>dSPACE Input/Output Blocks</h1>
+    <p>
+        The dSPACE input/output blocks facilitate communication between the MicroLabBox and external experimental
+        setups. Typically, inputs to the MicroLabBox originate from measurement sensors, while outputs provide
+        excitation signals to actuators, such as shakers. The provided library includes three primary blocks:
+    </p>
+
+    <h2>dSPACE In (Input Block)</h2>
+    <p>
+        The <strong>dSPACE In</strong> block handles incoming signals from the experimental setup. These signals are
+        typically acquired from sensors and measurement devices. The block includes the following processing steps:
+    </p>
+    <ul>
+        <li><strong>Signal Scaling:</strong> The input signal is multiplied by a factor of 10 to ensure compatibility
+            with the dSPACE system, which operates at this scale.</li>
+        <li><strong>Amplifier Gain:</strong> The input signal is divided by an amplifier gain constant. This allows
+            compensation for amplification introduced by external hardware.</li>
+        <li><strong>Sensitivity Adjustment:</strong> A sensitivity gain is applied, enabling further control over the
+            signal scaling.</li>
+    </ul>
+
+    <h2>dSPACE Out (Output Block)</h2>
+    <p>
+        The <strong>dSPACE Out</strong> block handles the excitation signals output from the MicroLabBox. The block
+        ensures safe signal transmission by incorporating logic-based constraints. It takes four inputs:
+    </p>
+    <ul>
+        <li><strong>Threshold:</strong> A two-element vector specifying the maximum allowable absolute amplitude for
+            each output channel. This prevents excessive excitation signals that could damage experimental structures.
+        </li>
+        <li><strong>Reset:</strong> A control signal that resets the output after a threshold breach.</li>
+        <li><strong>Signal 1 & Signal 2:</strong> The primary output signals to be transmitted by the MicroLabBox.</li>
+    </ul>
+    <p>
+        The block constantly monitors the output signals and compares them against the threshold. If an output exceeds
+        the defined limit, it is immediately cut off to protect the experiment. Resetting is required to restore the
+        signal flow.
+    </p>
+    <p>
+        Additionally, the output signals are scaled by a factor of 0.1 before leaving the MicroLabBox. This scaling
+        compensates for dSPACE's internal signal processing conventions.
+    </p>
+    <p>
+        The <strong>dSPACE Out</strong> block has three outputs:
+    </p>
+    <ul>
+        <li><strong>Output Signal 1 & Output Signal 2:</strong> These are the final signals that are sent to the shaker
+            system.</li>
+        <li><strong>Out Flag:</strong> This flag indicates which of the two input signals exceeded the threshold. This
+            can be useful for debugging and investigating unexpected signal interruptions.</li>
+    </ul>
+
+    <h2>Reset Logic Block</h2>
+    <p>
+        The <strong>Reset Logic</strong> block is responsible for controlling how signals are restored after a threshold
+        breach. It acts as a set-reset flip-flop to manage the <code>Reset</code> input of the <code>dSPACE Out</code>
+        block.
+    </p>
+    <p>
+        <strong>Functionality:</strong>
+    </p>
+    <ul>
+        <li>Accepts a user-defined <code>Reset</code> input (0 or 1).</li>
+        <li>Outputs a control signal that determines whether the system can resume output after a threshold breach.</li>
+        <li>Even if the user sets <code>Reset = 1</code>, the signal will still be cut off if the threshold is exceeded.
+            The output will only be restored if the user first sets <code>Reset = 0</code>, then switches it back to
+            <code>1</code>.</li>
+        <li>The set-reset flip-flop mechanism ensures that after a threshold breach, the system remains in a safe state
+            until the user actively resets it.</li>
+    </ul>
+    <p>
+        The <code>Reset</code> signal that the user interacts with is input to the Reset Logic block. This processed
+        signal is then passed to the <code>dSPACE Out</code> block to handle reset functionality correctly.
+    </p>
+
+    <h2>Usage Considerations</h2>
+    <ul>
+        <li>Ensure the correct amplifier gain and sensitivity values are applied in the <code>dSPACE In</code> block to
+            maintain accurate input readings.</li>
+        <li>Define appropriate threshold values to prevent excessive output signals that could damage experimental
+            equipment.</li>
+        <li>Use the Reset Logic block to implement a controlled and safe excitation signal flow.</li>
+        <li>Monitor the <code>Out Flag</code> from the <code>dSPACE Out</code> block to diagnose which signal exceeded
+            the threshold.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        The dSPACE input/output blocks provide a structured and safe approach for managing experimental signal
+        acquisition and excitation. By enforcing threshold protection and incorporating reset logic, these blocks help
+        maintain the integrity of both the system and the experiment.
+    </p>
+</body>
+
+</html>

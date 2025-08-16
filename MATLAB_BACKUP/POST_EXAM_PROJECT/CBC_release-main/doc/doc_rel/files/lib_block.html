@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library and Block Import</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Optional Centred Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Library Blocks</h1>
+    <p>
+        The software is distributed as a library, ensuring seamless integration and ease of use within Simulink. Upon
+        executing <code>setup_cbc.m</code>, all necessary protected blocks are extracted, and the contents of the
+        <code>src</code> folder are automatically added to the MATLAB path. This process includes both protected and
+        unprotected blocks provided with the software. Additionally, the <code>library</code> folder, containing the
+        core library, is also added to the MATLAB path.
+    </p>
+
+    <h2>Accessing the Library</h2>
+    <p>
+        Once the setup process is complete, users can create a new Simulink model and access the library through the
+        Simulink Library Browser. The library is listed under <strong>CBC Library</strong>. If the library does not
+        appear immediately, try refreshing the Library Browser by right-clicking on the library list and selecting
+        <strong>Refresh Library Browser</strong>.
+    </p>
+    <p>
+        After opening the library, users can drag and drop the required blocks into their Simulink model to construct
+        their system.
+    </p>
+
+    <h2>Protected Blocks and Associated Data</h2>
+    <p>
+        The protected blocks included in the software are distributed as MATLAB project files (<code>.mlproj</code>).
+        When <code>setup_cbc.m</code> is run, these files are extracted into designated folders.
+        Certain blocks also require additional data stored in <code>.mat</code> files, which will be located in their
+        respective extracted folders.
+    </p>
+    <p>
+        Users must manually load the corresponding <code>.mat</code> file when using these blocks, as there is currently
+        no automated mechanism for this. If an error occurs during simulation regarding missing variables, it is likely
+        due to an unloaded <code>.mat</code> file. Ensure that the required file is manually loaded before using the
+        block.
+    </p>
+
+    <h2>Alternative Method: Manual Block Access</h2>
+    <p>
+        While using the library is the recommended approach, users also have the option to manually locate and copy
+        blocks from the <code>src</code> folder. Protected blocks can be accessed from their harness files, which are
+        stored in their respective extracted folders and follow the naming convention:
+    </p>
+    <pre><code>*_harness.slx</code></pre>
+    <p>
+        Unprotected blocks can be accessed directly from the <code>src</code> folder and copied into the model without
+        additional steps.
+    </p>
+    <p>
+        Although this manual method is available, the library is designed to streamline workflow and simplify block
+        integration, making it the preferred method for using the software.
+    </p>
+</body>
+
+</html>

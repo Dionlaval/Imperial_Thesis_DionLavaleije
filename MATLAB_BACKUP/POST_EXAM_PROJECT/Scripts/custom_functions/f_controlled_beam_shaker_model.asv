@@ -1,0 +1,40 @@
+function [dx] = f_controlled_beam_shaker_model(t, x, model)
+%Summary: takes init state x and model parameters, returns derivative of x
+    R = model.R;
+    L = model.L;
+    G = model.G;
+    kappa = model.kappa;
+    Phiell = model.Phiell;
+    Phid = model.Phid;
+
+    % state variables
+    eta = x(1:2);
+    eta_dot = x(3:4);
+    I = x(5);
+    psi = x(6);
+
+    % Nonlinear term: (Phiell' * eta)^3 * Phiell
+    nonlinear_force = kappa * Phiell * (Phiell' * eta)^3;
+
+    % RHS of first equation: G*Phid*I - nonlinear term
+    rhs_eta_ddot = G * Phid * I - nonlinear_force;
+
+    % Solve for eta_ddot
+    eta_ddot = model.M \ (rhs_eta_ddot - model.C * eta_dot - model.K * eta);
+
+    % e_i = actual acceleration - desired acceleration (control on mode 1)
+    eta_ddot_i = eta_ddot(1);             % from structural equation
+    ei = eta_ddot_i - model.eta_ddot_star(t);
+    
+    % Update phi(t)
+    psi_dot = model.k2 * ei^2;
+    
+    % Control input
+    u = model.k1 * psi * ei;
+    
+    % Compute I_dot (as before, now using this u)
+    I_dot = (1/L) * (u - R*I - G*Phid' * eta_dot);
+
+    % Return derivative
+    dx = [eta_dot; eta_ddot; I_dot; psi_dot];
+end

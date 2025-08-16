@@ -1,0 +1,4086 @@
+-- ****************************************************************************
+--
+--  Trace file: sample_model.trc
+--
+--  RTI1202 23.1 (02-May-2023)
+--  Tue Jul 22 14:47:32 2025
+--
+--  Copyright 2025, dSPACE GmbH. All rights reserved.
+--
+-- ****************************************************************************
+--
+--  Used options:
+--    TRCGenerateVirtualBlocks      = 0
+--    TRCGenerateLabels             = 0
+--    TRCGenerateStates             = 0
+--    TRCGenerateDerivatives        = 0
+--    TRCGenerateParamValues        = 0
+--    TRCGenerateApplicationKeyword = 0
+--    TRCOnlyGlobals                = 0
+--    TRCIsOmitVdOn                 = 0
+--
+--  Trace file format: 3
+
+-- ******** Keywords **********************************************************
+-- _application "sample_model.map"
+
+_author      "RTI1202 23.1 (02-May-2023)"
+_description ""
+_gendate     "07/22/2025 02:47:39"
+_genname     "RTI"
+_genversion  "23.1"
+_model       "sample_model"
+
+
+sampling_period[0]
+{
+    alias:     "HostService"
+    increment: 0.001
+    unit:      "s"
+    value:     0.001
+}
+
+struct sample_model_struct_isB4Cw3Ovpp8VfzP6RUqbD
+{
+    array-incr: 4
+}
+
+    structField0
+    {
+        alias: "OutputPortsWidth"
+        offs:  0
+        type:  int(32)
+    }
+
+
+endstruct
+
+typedef sample_model_ArrayDT0_7 float(64,IEEE) [7]
+
+typedef sample_model_ArrayDT0_15_1_Col col float(64,IEEE) [15][1]
+
+typedef sample_model_ArrayDT0_15 float(64,IEEE) [15]
+
+typedef sample_model_ArrayDT0_1_2_Col col float(64,IEEE) [1][2]
+
+typedef sample_model_ArrayDT0_2 float(64,IEEE) [2]
+
+typedef sample_model_ArrayDT0_6_1_Col col float(64,IEEE) [6][1]
+
+typedef sample_model_ArrayDT0_12_1_Col col float(64,IEEE) [12][1]
+
+currentTime
+{
+    addr:  0x4804bef8
+    alias: "currentTime"
+    desc:  "Current simulation time. Increments with execution of Timer Task 1."
+    flags: READONLY
+    type:  float(64,IEEE)*
+    unit:  "s"
+}
+
+p_msg_last_error_no
+{
+    addr:  0x480475d0
+    alias: "errorNumber"
+    desc:  "Error number of last error message (zero if no error)."
+    flags: READONLY
+    type:  uint(32)*
+    unit:  "-"
+}
+
+finalTime
+{
+    addr:  0x4804befc
+    alias: "finalTime"
+    desc:  "Simulation stop time. When reached, simState switches to STOP."
+    flags: READONLY
+    type:  float(64,IEEE)*
+    unit:  "s"
+}
+
+modelStepSize
+{
+    addr:  0x4804bf00
+    alias: "modelStepSize"
+    desc:  "Fixed step size of the model, sample time of Timer Task 1."
+    flags: READONLY
+    type:  float(64,IEEE)
+    unit:  "s"
+}
+
+simState
+{
+    addr:  0x48049050
+    alias: "simState"
+    desc:  "Simulation state: STOP=0 RUN=2"
+    type:  int(32)
+    unit:  "-"
+}
+
+p_dsts_sum_of_reset_time
+{
+    addr:  0x480475cc
+    alias: "sumOfResetTime"
+    desc:  "Internal variable for summing up reset time."
+    flags: HIDDEN|READONLY
+    type:  float(64,IEEE)*
+    unit:  "s"
+}
+
+group "Model Root"
+
+    group "amplitude_estimator"
+
+        p_0_sample_model_real_T_0[640]
+        {
+            addr:  0x4804bea0
+            alias: "amplitude"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Sqrt"
+        {
+            block: "Sqrt"
+        }
+
+            p_0_sample_model_real_T_0[640]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Square"
+        {
+            block: "Math"
+        }
+
+            p_0_sample_model_real_T_0[624]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[639]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "amplitude_estimator1"
+
+        p_0_sample_model_real_T_0[657]
+        {
+            addr:  0x4804bea0
+            alias: "amplitude"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Sqrt"
+        {
+            block: "Sqrt"
+        }
+
+            p_0_sample_model_real_T_0[657]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Square"
+        {
+            block: "Math"
+        }
+
+            p_0_sample_model_real_T_0[641]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[656]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "amplitude_switch"
+    {
+        block: "Switch"
+    }
+
+        p_0_sample_model_real_T_0[117]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "AND"
+    {
+        block: "Logic"
+    }
+
+        p_0_sample_model_boolean_T_2[2]
+        {
+            addr:    0x4804bea8
+            alias:   "Out1"
+            bitmask: 0x1
+            flags:   OUTPUT|READONLY
+            range:   < 0 ; 1 >
+            type:    uint(8)*
+        }
+
+    endgroup
+
+    group "base_amp"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[6]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "base_signal"
+
+        p_0_sample_model_real_T_0[4]
+        {
+            addr:  0x4804bea0
+            alias: "b_signal"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Gain"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[8]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[2]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Integrator"
+        {
+            block: "Integrator"
+        }
+
+            p_1_sample_model_real_T_1[7]
+            {
+                addr:  0x4804bec8
+                alias: "InitialCondition"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[1]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Product"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[4]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Sin"
+        {
+            block: "Trigonometry"
+        }
+
+            p_0_sample_model_real_T_0[3]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "ControlSwitch"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[9]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "ControlTarget"
+
+        p_0_sample_model_real_T_0[100]
+        {
+            addr:  0x4804bea0
+            alias: "Target"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Constant"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[13]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Data Type Conversion1"
+        {
+            block: "DataTypeConversion"
+        }
+
+            p_0_sample_model_real_T_0[48]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Data Type Conversion2"
+        {
+            block: "DataTypeConversion"
+        }
+
+            p_0_sample_model_real_T_0[27]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "DC"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[12]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Gain"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[22]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[34]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Gain1"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[21]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[13]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Integrator"
+        {
+            block: "Integrator"
+        }
+
+            p_1_sample_model_real_T_1[20]
+            {
+                addr:  0x4804bec8
+                alias: "InitialCondition"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[5]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Product1"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[6]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Product2"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[85]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15*
+            }
+
+        endgroup
+
+        group "Sum"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[100]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Trigonometric\nFunction"
+        {
+            block: "Trigonometry"
+        }
+
+            p_0_sample_model_real_T_0[41]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+        group "Trigonometric\nFunction1"
+        {
+            block: "Trigonometry"
+        }
+
+            p_0_sample_model_real_T_0[20]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_7*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "DAC_CLASS1_BL1"
+
+    endgroup
+
+    group "DAC_CLASS1_BL2"
+
+    endgroup
+
+    group "discrete_LP"
+
+        p_0_sample_model_real_T_0[107]
+        {
+            addr:  0x4804bea0
+            alias: "out"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Bias"
+        {
+            block: "Bias"
+        }
+
+            p_1_sample_model_real_T_1[46]
+            {
+                addr:  0x4804bec8
+                alias: "Bias"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[106]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Discrete Filter1"
+        {
+            block: "DiscreteFilter"
+        }
+
+            p_1_sample_model_real_T_1[47]
+            {
+                addr:  0x4804bec8
+                alias: "InitialStates"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[107]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Gain"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[45]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[105]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "displacement_thresh"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[52]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "DS1202_SENSOR_SUPPLY"
+
+    endgroup
+
+    group "dSPACE in"
+
+        p_0_sample_model_real_T_0[661]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[104]
+        {
+            addr:  0x4804bea0
+            alias: "Out2"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[667]
+        {
+            addr:  0x4804bea0
+            alias: "Out3"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "acc_sns1"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[104]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[666]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "ADC_CLASS1_BL1"
+
+            p_0_sample_model_real_T_0[101]
+            {
+                addr:  0x4804bea0
+                alias: "ADC"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "ADC_CLASS1_BL2"
+
+            p_0_sample_model_real_T_0[658]
+            {
+                addr:  0x4804bea0
+                alias: "ADC"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "ADC_CLASS1_BL3"
+
+            p_0_sample_model_real_T_0[662]
+            {
+                addr:  0x4804bea0
+                alias: "ADC"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Add1"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[664]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "amp1"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[99]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "amp2"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[42]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "amp3"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[103]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "bias"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[102]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "disp_sns2"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[43]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[104]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Divide"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[660]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Divide1"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[103]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Divide2"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[665]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "force_sns1"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[100]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[661]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "in_gain1"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[98]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[659]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "in_gain2"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[41]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[102]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "in_gain3"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[101]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[663]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "m2mm"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[105]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[667]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "dSPACE out"
+
+        p_0_sample_model_real_T_0[118]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[119]
+        {
+            addr:  0x4804bea0
+            alias: "Out2"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[120]
+        {
+            addr:  0x4804bea0
+            alias: "Out3"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_1_2_Col*
+        }
+
+        group "dpsace_output"
+
+        endgroup
+
+    endgroup
+
+    group "f_elements"
+
+        p_0_sample_model_real_T_5[1]
+        {
+            addr:  0x4804beb4
+            alias: "a_primary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[680]
+        {
+            addr:  0x4804bea0
+            alias: "a_secondary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_5[8]
+        {
+            addr:  0x4804beb4
+            alias: "b_primary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[681]
+        {
+            addr:  0x4804bea0
+            alias: "b_secondary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Abs"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[668]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_6_1_Col*
+            }
+
+        endgroup
+
+        group "Abs1"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[674]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_6_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[680]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Sum of\nElements1"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[681]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "filter_alpha"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[44]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "First order hold3"
+
+        p_0_sample_model_real_T_0[838]
+        {
+            addr:  0x4804bea0
+            alias: "out"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        group "in"
+        {
+            block: "SignalConversion"
+        }
+
+            p_0_sample_model_real_T_0[838]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "force_reconstructor"
+
+        p_0_sample_model_real_T_0[726]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Harmonic Basis Gen1"
+
+            group "Cos"
+            {
+                block: "Trigonometry"
+            }
+
+                p_0_sample_model_real_T_0[697]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "DC"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[115]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Gain1"
+            {
+                block: "Gain"
+            }
+
+                p_1_sample_model_real_T_1[114]
+                {
+                    addr:  0x4804bec8
+                    alias: "Gain"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+                p_0_sample_model_real_T_0[690]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "harmonics_array"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[107]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "Integrator"
+            {
+                block: "Integrator"
+            }
+
+                p_1_sample_model_real_T_1[106]
+                {
+                    addr:  0x4804bec8
+                    alias: "InitialCondition"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+                p_0_sample_model_real_T_0[682]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Product"
+            {
+                block: "Product"
+            }
+
+                p_0_sample_model_real_T_0[683]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "Sin"
+            {
+                block: "Trigonometry"
+            }
+
+                p_0_sample_model_real_T_0[704]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+        endgroup
+
+        group "Product"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[711]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[726]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "Fundamental_Frequency"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[57]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "get secondary"
+
+        group "Gain1"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[116]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[727]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Gain2"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[117]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[728]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Gain3"
+        {
+            block: "Gain"
+        }
+
+            p_1_sample_model_real_T_1[118]
+            {
+                addr:  0x4804bec8
+                alias: "Gain"
+                flags: PARAM
+                type:  float(64,IEEE)*
+            }
+
+            p_0_sample_model_real_T_0[729]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "init_target_coeffs"
+
+        group "harmonics_array1"
+        {
+            block: "Constant"
+        }
+
+            p_1_sample_model_real_T_1[23]
+            {
+                addr:  0x4804bec8
+                alias: "Value"
+                flags: PARAM
+                type:  sample_model_ArrayDT0_15*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "input_safety"
+
+        p_0_sample_model_boolean_T_2[0]
+        {
+            addr:    0x4804bea8
+            alias:   "valid"
+            bitmask: 0x1
+            flags:   OUTPUT|READONLY
+            range:   < 0 ; 1 >
+            type:    uint(8)*
+        }
+
+        group "Abs"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[115]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Less Than"
+        {
+            block: "RelationalOperator"
+        }
+
+            p_0_sample_model_boolean_T_2[0]
+            {
+                addr:    0x4804bea8
+                alias:   "Out1"
+                bitmask: 0x1
+                flags:   OUTPUT|READONLY
+                range:   < 0 ; 1 >
+                type:    uint(8)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "input_thresh"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[51]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "invasiveness_estimator"
+
+        p_0_sample_model_real_T_0[746]
+        {
+            addr:  0x4804bea0
+            alias: "invasiveness"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Abs1"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[730]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_12_1_Col*
+            }
+
+        endgroup
+
+        group "Abs2"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[742]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_2*
+            }
+
+        endgroup
+
+        group "Divide1"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[746]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "get primary1"
+
+        endgroup
+
+        group "get secondary"
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[744]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Sum of\nElements1"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[745]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "MATLAB Function1"
+
+        p_0_sample_model_real_T_0[808]
+        {
+            addr:  0x4804bea0
+            alias: "avgCoeffs"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        p_0_sample_model_real_T_0[823]
+        {
+            addr:  0x4804bea0
+            alias: "varCoeffs"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+    endgroup
+
+    group "Multiport\nSwitch"
+    {
+        block: "MultiPortSwitch"
+    }
+
+        p_0_sample_model_real_T_0[113]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "No_input"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[54]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "No_input1"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[53]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "out_gain1"
+    {
+        block: "Gain"
+    }
+
+        p_1_sample_model_real_T_1[55]
+        {
+            addr:  0x4804bec8
+            alias: "Gain"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[122]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "out_gain2"
+    {
+        block: "Gain"
+    }
+
+        p_1_sample_model_real_T_1[56]
+        {
+            addr:  0x4804bec8
+            alias: "Gain"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[123]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "output_safety"
+
+        p_0_sample_model_boolean_T_2[1]
+        {
+            addr:    0x4804bea8
+            alias:   "valid"
+            bitmask: 0x1
+            flags:   OUTPUT|READONLY
+            range:   < 0 ; 1 >
+            type:    uint(8)*
+        }
+
+        group "Abs"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[116]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Less Than"
+        {
+            block: "RelationalOperator"
+        }
+
+            p_0_sample_model_boolean_T_2[1]
+            {
+                addr:    0x4804bea8
+                alias:   "Out1"
+                bitmask: 0x1
+                flags:   OUTPUT|READONLY
+                range:   < 0 ; 1 >
+                type:    uint(8)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "PD_controller"
+
+        p_0_sample_model_real_T_0[807]
+        {
+            addr:  0x4804bea0
+            alias: "Control"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "DiffError"
+
+            p_0_sample_model_real_T_0[111]
+            {
+                addr:  0x4804bea0
+                alias: "dError"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+            group "Sum4"
+            {
+                block: "Sum"
+            }
+
+                p_0_sample_model_real_T_0[110]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Unit Delay"
+            {
+                block: "UnitDelay"
+            }
+
+                p_1_sample_model_real_T_1[48]
+                {
+                    addr:  0x4804bec8
+                    alias: "InitialCondition"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+                p_0_sample_model_real_T_0[109]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Weighted\nSample Time"
+            {
+                block: "SampleTimeMath"
+            }
+
+                p_0_sample_model_real_T_0[111]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+                p_1_sample_model_real_T_1[49]
+                {
+                    addr:  0x4804bec8
+                    alias: "WtEt"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+        endgroup
+
+        group "PD_Control"
+
+            p_0_sample_model_real_T_0[807]
+            {
+                addr:  0x4804bea0
+                alias: "Control"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+            group "Kd"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[50]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Kp"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[11]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Product"
+            {
+                block: "Product"
+            }
+
+                p_0_sample_model_real_T_0[806]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Product1"
+            {
+                block: "Product"
+            }
+
+                p_0_sample_model_real_T_0[112]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Sum2"
+            {
+                block: "Sum"
+            }
+
+                p_0_sample_model_real_T_0[807]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+        endgroup
+
+    endgroup
+
+    group "Reset"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[5]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "reset_logic"
+
+        p_0_sample_model_real_T_0[0]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "reset_logic"
+
+        endgroup
+
+    endgroup
+
+    group "RTF_estimator"
+
+        p_0_sample_model_real_T_8[0]
+        {
+            addr:  0x4804bec0
+            alias: "avgCoeffs"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        p_0_sample_model_real_T_8[15]
+        {
+            addr:  0x4804bec0
+            alias: "avgVars"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        group "MATLAB Function1"
+
+            p_0_sample_model_real_T_8[0]
+            {
+                addr:  0x4804bec0
+                alias: "avgCoeffs"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+            p_0_sample_model_real_T_8[15]
+            {
+                addr:  0x4804bec0
+                alias: "varCoeffs"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Subsystem"
+
+            p_0_sample_model_real_T_0[173]
+            {
+                addr:  0x4804bea0
+                alias: "Fourier1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15*
+            }
+
+            group "Fourier Series 2"
+
+                p_0_sample_model_real_T_0[173]
+                {
+                    addr:  0x4804bea0
+                    alias: "Fourier"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_15*
+                }
+
+                group "Data Type Conversion1"
+                {
+                    block: "DataTypeConversion"
+                }
+
+                    p_0_sample_model_real_T_0[158]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "First order hold"
+
+                    p_0_sample_model_real_T_7[0]
+                    {
+                        addr:  0x4804bebc
+                        alias: "Out"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "In"
+                    {
+                        block: "SignalConversion"
+                    }
+
+                        p_0_sample_model_real_T_7[0]
+                        {
+                            addr:  0x4804bebc
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Gain"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[76]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[324]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Gain1"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[62]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[157]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Gain3"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[60]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[140]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Integrator"
+
+                    p_0_sample_model_real_T_0[309]
+                    {
+                        addr:  0x4804bea0
+                        alias: "int"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "Detect Rise\nPositive1"
+
+                        p_1_sample_model_uint8_T_0[0]
+                        {
+                            addr:  0x4804bec4
+                            alias: "vinit"
+                            flags: PARAM
+                            type:  uint(8)*
+                        }
+
+                        p_0_sample_model_uint8_T_1[2]
+                        {
+                            addr:  0x4804bea4
+                            alias: "Y"
+                            flags: OUTPUT|READONLY
+                            type:  uint(8)*
+                        }
+
+                        group "Delay Input1"
+                        {
+                            block: "UnitDelay"
+                            desc:  "\nStore in Global RAM"
+                        }
+
+                            p_0_sample_model_uint8_T_1[0]
+                            {
+                                addr:  0x4804bea4
+                                alias: "Out1"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                            trcref0_InitialCondition
+                            {
+                                alias:    "InitialCondition"
+                                flags:    DEPRECATED|HIDDEN
+                                refgroup: "/Model Root/RTF_estimator/Subsystem/Fourier Series 2/Integrator/Detect Rise\nPositive1"
+                                refvar:   "vinit"
+                            }
+
+                            trcref0_vinit
+                            {
+                                alias:    "vinit"
+                                refgroup: "/Model Root/RTF_estimator/Subsystem/Fourier Series 2/Integrator/Detect Rise\nPositive1"
+                                refvar:   "vinit"
+                            }
+
+                        endgroup
+
+                        group "FixPt\nRelational\nOperator"
+                        {
+                            block: "RelationalOperator"
+                        }
+
+                            p_0_sample_model_uint8_T_1[2]
+                            {
+                                addr:  0x4804bea4
+                                alias: "Out1"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                        endgroup
+
+                        group "Positive"
+
+                            p_0_sample_model_uint8_T_1[1]
+                            {
+                                addr:  0x4804bea4
+                                alias: "y"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                            group "Compare"
+                            {
+                                block: "RelationalOperator"
+                            }
+
+                                p_0_sample_model_uint8_T_1[1]
+                                {
+                                    addr:  0x4804bea4
+                                    alias: "Out1"
+                                    flags: OUTPUT|READONLY
+                                    type:  uint(8)*
+                                }
+
+                            endgroup
+
+                            group "Constant"
+                            {
+                                block: "Constant"
+                            }
+
+                                p_1_sample_model_real_T_1[1]
+                                {
+                                    addr:  0x4804bec8
+                                    alias: "Value"
+                                    flags: PARAM
+                                    type:  float(64,IEEE)*
+                                }
+
+                            endgroup
+
+                        endgroup
+
+                    endgroup
+
+                    group "Previous input1"
+                    {
+                        block: "UnitDelay"
+                    }
+
+                        p_1_sample_model_real_T_1[74]
+                        {
+                            addr:  0x4804bec8
+                            alias: "InitialCondition"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                        p_0_sample_model_real_T_0[264]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "State1"
+                    {
+                        block: "UnitDelay"
+                    }
+
+                        p_1_sample_model_real_T_1[63]
+                        {
+                            addr:  0x4804bec8
+                            alias: "InitialCondition"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                        p_0_sample_model_real_T_0[188]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Sum2"
+                    {
+                        block: "Sum"
+                    }
+
+                        p_0_sample_model_real_T_0[309]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Sum3"
+                    {
+                        block: "Sum"
+                    }
+
+                        p_0_sample_model_real_T_0[279]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Switch1"
+                    {
+                        block: "Switch"
+                    }
+
+                        p_0_sample_model_real_T_0[339]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Weighted\nSample Time1"
+                    {
+                        block: "SampleTimeMath"
+                    }
+
+                        p_0_sample_model_real_T_0[294]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                        p_1_sample_model_real_T_1[75]
+                        {
+                            addr:  0x4804bec8
+                            alias: "WtEt"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                    endgroup
+
+                    group "Zero1"
+                    {
+                        block: "Constant"
+                    }
+
+                        p_1_sample_model_real_T_1[77]
+                        {
+                            addr:  0x4804bec8
+                            alias: "Value"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Integrator1"
+                {
+                    block: "Integrator"
+                }
+
+                    p_1_sample_model_real_T_1[59]
+                    {
+                        addr:  0x4804bec8
+                        alias: "InitialCondition"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[139]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Latched\nfirst order hold"
+
+                    p_0_sample_model_real_T_6[0]
+                    {
+                        addr:  0x4804beb8
+                        alias: "Out"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "In"
+                    {
+                        block: "SignalConversion"
+                    }
+
+                        p_0_sample_model_real_T_6[0]
+                        {
+                            addr:  0x4804beb8
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Product"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[249]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Product1"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[354]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Product2"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[232]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Sin"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[141]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Sum"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[173]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Sum1"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[248]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Sum2"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[247]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+            endgroup
+
+            group "Harmonic Basis Gen1"
+
+                group "Cos"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[218]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "DC"
+                {
+                    block: "Constant"
+                }
+
+                    p_1_sample_model_real_T_1[64]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Value"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Gain1"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[73]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[211]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "harmonics_array"
+                {
+                    block: "Constant"
+                }
+
+                    p_1_sample_model_real_T_1[66]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Value"
+                        flags: PARAM
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "Integrator"
+                {
+                    block: "Integrator"
+                }
+
+                    p_1_sample_model_real_T_1[65]
+                    {
+                        addr:  0x4804bec8
+                        alias: "InitialCondition"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[203]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Product"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[204]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "Sin"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[225]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+            endgroup
+
+        endgroup
+
+    endgroup
+
+    group "RTF_estimator1"
+
+        p_0_sample_model_real_T_5[0]
+        {
+            addr:  0x4804beb4
+            alias: "avgCoeffs"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        p_0_sample_model_real_T_5[15]
+        {
+            addr:  0x4804beb4
+            alias: "avgVars"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+        group "MATLAB Function1"
+
+            p_0_sample_model_real_T_5[0]
+            {
+                addr:  0x4804beb4
+                alias: "avgCoeffs"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+            p_0_sample_model_real_T_5[15]
+            {
+                addr:  0x4804beb4
+                alias: "varCoeffs"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Subsystem"
+
+            p_0_sample_model_real_T_0[418]
+            {
+                addr:  0x4804bea0
+                alias: "Fourier1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15*
+            }
+
+            group "Fourier Series 2"
+
+                p_0_sample_model_real_T_0[418]
+                {
+                    addr:  0x4804bea0
+                    alias: "Fourier"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_15*
+                }
+
+                group "Data Type Conversion1"
+                {
+                    block: "DataTypeConversion"
+                }
+
+                    p_0_sample_model_real_T_0[403]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "First order hold"
+
+                    p_0_sample_model_real_T_4[0]
+                    {
+                        addr:  0x4804beb0
+                        alias: "Out"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "In"
+                    {
+                        block: "SignalConversion"
+                    }
+
+                        p_0_sample_model_real_T_4[0]
+                        {
+                            addr:  0x4804beb0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Gain"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[96]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[569]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Gain1"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[82]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[402]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Gain3"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[80]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[385]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Integrator"
+
+                    p_0_sample_model_real_T_0[554]
+                    {
+                        addr:  0x4804bea0
+                        alias: "int"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "Detect Rise\nPositive1"
+
+                        p_1_sample_model_uint8_T_0[1]
+                        {
+                            addr:  0x4804bec4
+                            alias: "vinit"
+                            flags: PARAM
+                            type:  uint(8)*
+                        }
+
+                        p_0_sample_model_uint8_T_1[5]
+                        {
+                            addr:  0x4804bea4
+                            alias: "Y"
+                            flags: OUTPUT|READONLY
+                            type:  uint(8)*
+                        }
+
+                        group "Delay Input1"
+                        {
+                            block: "UnitDelay"
+                            desc:  "\nStore in Global RAM"
+                        }
+
+                            p_0_sample_model_uint8_T_1[3]
+                            {
+                                addr:  0x4804bea4
+                                alias: "Out1"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                            trcref0_InitialCondition
+                            {
+                                alias:    "InitialCondition"
+                                flags:    DEPRECATED|HIDDEN
+                                refgroup: "/Model Root/RTF_estimator1/Subsystem/Fourier Series 2/Integrator/Detect Rise\nPositive1"
+                                refvar:   "vinit"
+                            }
+
+                            trcref0_vinit
+                            {
+                                alias:    "vinit"
+                                refgroup: "/Model Root/RTF_estimator1/Subsystem/Fourier Series 2/Integrator/Detect Rise\nPositive1"
+                                refvar:   "vinit"
+                            }
+
+                        endgroup
+
+                        group "FixPt\nRelational\nOperator"
+                        {
+                            block: "RelationalOperator"
+                        }
+
+                            p_0_sample_model_uint8_T_1[5]
+                            {
+                                addr:  0x4804bea4
+                                alias: "Out1"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                        endgroup
+
+                        group "Positive"
+
+                            p_0_sample_model_uint8_T_1[4]
+                            {
+                                addr:  0x4804bea4
+                                alias: "y"
+                                flags: OUTPUT|READONLY
+                                type:  uint(8)*
+                            }
+
+                            group "Compare"
+                            {
+                                block: "RelationalOperator"
+                            }
+
+                                p_0_sample_model_uint8_T_1[4]
+                                {
+                                    addr:  0x4804bea4
+                                    alias: "Out1"
+                                    flags: OUTPUT|READONLY
+                                    type:  uint(8)*
+                                }
+
+                            endgroup
+
+                            group "Constant"
+                            {
+                                block: "Constant"
+                            }
+
+                                p_1_sample_model_real_T_1[2]
+                                {
+                                    addr:  0x4804bec8
+                                    alias: "Value"
+                                    flags: PARAM
+                                    type:  float(64,IEEE)*
+                                }
+
+                            endgroup
+
+                        endgroup
+
+                    endgroup
+
+                    group "Previous input1"
+                    {
+                        block: "UnitDelay"
+                    }
+
+                        p_1_sample_model_real_T_1[94]
+                        {
+                            addr:  0x4804bec8
+                            alias: "InitialCondition"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                        p_0_sample_model_real_T_0[509]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "State1"
+                    {
+                        block: "UnitDelay"
+                    }
+
+                        p_1_sample_model_real_T_1[83]
+                        {
+                            addr:  0x4804bec8
+                            alias: "InitialCondition"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                        p_0_sample_model_real_T_0[433]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Sum2"
+                    {
+                        block: "Sum"
+                    }
+
+                        p_0_sample_model_real_T_0[554]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Sum3"
+                    {
+                        block: "Sum"
+                    }
+
+                        p_0_sample_model_real_T_0[524]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Switch1"
+                    {
+                        block: "Switch"
+                    }
+
+                        p_0_sample_model_real_T_0[584]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                    group "Weighted\nSample Time1"
+                    {
+                        block: "SampleTimeMath"
+                    }
+
+                        p_0_sample_model_real_T_0[539]
+                        {
+                            addr:  0x4804bea0
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                        p_1_sample_model_real_T_1[95]
+                        {
+                            addr:  0x4804bec8
+                            alias: "WtEt"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                    endgroup
+
+                    group "Zero1"
+                    {
+                        block: "Constant"
+                    }
+
+                        p_1_sample_model_real_T_1[97]
+                        {
+                            addr:  0x4804bec8
+                            alias: "Value"
+                            flags: PARAM
+                            type:  float(64,IEEE)*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Integrator1"
+                {
+                    block: "Integrator"
+                }
+
+                    p_1_sample_model_real_T_1[79]
+                    {
+                        addr:  0x4804bec8
+                        alias: "InitialCondition"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[384]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Latched\nfirst order hold"
+
+                    p_0_sample_model_real_T_3[0]
+                    {
+                        addr:  0x4804beac
+                        alias: "Out"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                    group "In"
+                    {
+                        block: "SignalConversion"
+                    }
+
+                        p_0_sample_model_real_T_3[0]
+                        {
+                            addr:  0x4804beac
+                            alias: "Out1"
+                            flags: OUTPUT|READONLY
+                            type:  sample_model_ArrayDT0_15*
+                        }
+
+                    endgroup
+
+                endgroup
+
+                group "Product"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[494]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Product1"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[599]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Product2"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[477]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Sin"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[386]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Sum"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[418]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_15*
+                    }
+
+                endgroup
+
+                group "Sum1"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[493]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Sum2"
+                {
+                    block: "Sum"
+                }
+
+                    p_0_sample_model_real_T_0[492]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+            endgroup
+
+            group "Harmonic Basis Gen1"
+
+                group "Cos"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[463]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "DC"
+                {
+                    block: "Constant"
+                }
+
+                    p_1_sample_model_real_T_1[84]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Value"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Gain1"
+                {
+                    block: "Gain"
+                }
+
+                    p_1_sample_model_real_T_1[93]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Gain"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[456]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "harmonics_array"
+                {
+                    block: "Constant"
+                }
+
+                    p_1_sample_model_real_T_1[86]
+                    {
+                        addr:  0x4804bec8
+                        alias: "Value"
+                        flags: PARAM
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "Integrator"
+                {
+                    block: "Integrator"
+                }
+
+                    p_1_sample_model_real_T_1[85]
+                    {
+                        addr:  0x4804bec8
+                        alias: "InitialCondition"
+                        flags: PARAM
+                        type:  float(64,IEEE)*
+                    }
+
+                    p_0_sample_model_real_T_0[448]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  float(64,IEEE)*
+                    }
+
+                endgroup
+
+                group "Product"
+                {
+                    block: "Product"
+                }
+
+                    p_0_sample_model_real_T_0[449]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+                group "Sin"
+                {
+                    block: "Trigonometry"
+                }
+
+                    p_0_sample_model_real_T_0[470]
+                    {
+                        addr:  0x4804bea0
+                        alias: "Out1"
+                        flags: OUTPUT|READONLY
+                        type:  sample_model_ArrayDT0_7*
+                    }
+
+                endgroup
+
+            endgroup
+
+        endgroup
+
+    endgroup
+
+    group "RTI Data"
+
+    endgroup
+
+    group "SS_trigger"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[40]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "Subtract"
+    {
+        block: "Sum"
+    }
+
+        p_0_sample_model_real_T_0[70]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  sample_model_ArrayDT0_15_1_Col*
+        }
+
+    endgroup
+
+    group "Sum1"
+    {
+        block: "Sum"
+    }
+
+        p_0_sample_model_real_T_0[114]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "Sum2"
+    {
+        block: "Sum"
+    }
+
+        p_0_sample_model_real_T_0[108]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "target_amp"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[38]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+    group "Threshold"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[3]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  sample_model_ArrayDT0_2*
+        }
+
+    endgroup
+
+    group "Transience_Estimator"
+
+        p_0_sample_model_real_T_0[618]
+        {
+            addr:  0x4804bea0
+            alias: "norm_transience"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Abs1"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[616]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_2*
+            }
+
+        endgroup
+
+        group "Divide2"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[614]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_2*
+            }
+
+        endgroup
+
+        group "get primary1"
+
+        endgroup
+
+        group "get primary4"
+
+        endgroup
+
+        group "Max"
+        {
+            block: "MinMax"
+        }
+
+            p_0_sample_model_real_T_0[618]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "Transience_Estimator1"
+
+        p_0_sample_model_real_T_0[623]
+        {
+            addr:  0x4804bea0
+            alias: "norm_transience"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Abs1"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[621]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_2*
+            }
+
+        endgroup
+
+        group "Divide2"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[619]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_2*
+            }
+
+        endgroup
+
+        group "get primary1"
+
+        endgroup
+
+        group "get primary4"
+
+        endgroup
+
+        group "Max"
+        {
+            block: "MinMax"
+        }
+
+            p_0_sample_model_real_T_0[623]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "x_elements"
+
+        p_0_sample_model_real_T_8[1]
+        {
+            addr:  0x4804bec0
+            alias: "a_primary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[759]
+        {
+            addr:  0x4804bea0
+            alias: "a_secondary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_8[8]
+        {
+            addr:  0x4804bec0
+            alias: "b_primary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        p_0_sample_model_real_T_0[760]
+        {
+            addr:  0x4804bea0
+            alias: "b_secondary"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Abs"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[747]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_6_1_Col*
+            }
+
+        endgroup
+
+        group "Abs1"
+        {
+            block: "Abs"
+        }
+
+            p_0_sample_model_real_T_0[753]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_6_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[759]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+        group "Sum of\nElements1"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[760]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "x_reconstructor"
+
+        p_0_sample_model_real_T_0[805]
+        {
+            addr:  0x4804bea0
+            alias: "Out1"
+            flags: OUTPUT|READONLY
+            type:  float(64,IEEE)*
+        }
+
+        group "Harmonic Basis Gen1"
+
+            group "Cos"
+            {
+                block: "Trigonometry"
+            }
+
+                p_0_sample_model_real_T_0[776]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "DC"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[128]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Gain1"
+            {
+                block: "Gain"
+            }
+
+                p_1_sample_model_real_T_1[127]
+                {
+                    addr:  0x4804bec8
+                    alias: "Gain"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+                p_0_sample_model_real_T_0[769]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "harmonics_array"
+            {
+                block: "Constant"
+            }
+
+                p_1_sample_model_real_T_1[120]
+                {
+                    addr:  0x4804bec8
+                    alias: "Value"
+                    flags: PARAM
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "Integrator"
+            {
+                block: "Integrator"
+            }
+
+                p_1_sample_model_real_T_1[119]
+                {
+                    addr:  0x4804bec8
+                    alias: "InitialCondition"
+                    flags: PARAM
+                    type:  float(64,IEEE)*
+                }
+
+                p_0_sample_model_real_T_0[761]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  float(64,IEEE)*
+                }
+
+            endgroup
+
+            group "Product"
+            {
+                block: "Product"
+            }
+
+                p_0_sample_model_real_T_0[762]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+            group "Sin"
+            {
+                block: "Trigonometry"
+            }
+
+                p_0_sample_model_real_T_0[783]
+                {
+                    addr:  0x4804bea0
+                    alias: "Out1"
+                    flags: OUTPUT|READONLY
+                    type:  sample_model_ArrayDT0_7*
+                }
+
+            endgroup
+
+        endgroup
+
+        group "Product"
+        {
+            block: "Product"
+        }
+
+            p_0_sample_model_real_T_0[790]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  sample_model_ArrayDT0_15_1_Col*
+            }
+
+        endgroup
+
+        group "Sum of\nElements"
+        {
+            block: "Sum"
+        }
+
+            p_0_sample_model_real_T_0[805]
+            {
+                addr:  0x4804bea0
+                alias: "Out1"
+                flags: OUTPUT|READONLY
+                type:  float(64,IEEE)*
+            }
+
+        endgroup
+
+    endgroup
+
+    group "Zero2"
+    {
+        block: "Constant"
+    }
+
+        p_1_sample_model_real_T_1[10]
+        {
+            addr:  0x4804bec8
+            alias: "Value"
+            flags: PARAM
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+endgroup
+
+group "RTT Dynamic Variables"
+
+endgroup
+
+group "State Machine Data"
+
+endgroup
+
+group "Task Info"
+
+    group "Timer Task 1"
+
+        pRti_TIMERA_OType
+        {
+            addr:  0x4804bf30
+            alias: "overrunCheckType"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_OCnt
+        {
+            addr:  0x4804bf3c
+            alias: "overrunCount"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_ORpt
+        {
+            addr:  0x4804bf38
+            alias: "overrunQueueCount"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_OMax
+        {
+            addr:  0x4804bf34
+            alias: "overrunQueueMax"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_Prio
+        {
+            addr:  0x4804bf44
+            alias: "priority"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_STime
+        {
+            addr:  0x4804bf24
+            alias: "sampleTime"
+            flags: READONLY
+            type:  float(64,IEEE)*
+        }
+
+        pRti_TIMERA_TState
+        {
+            addr:  0x4804bf2c
+            alias: "state"
+            flags: READONLY
+            type:  int(32)*
+        }
+
+        pRti_TIMERA_TCnt
+        {
+            addr:  0x4804bf40
+            alias: "taskCallCount"
+            flags: READONLY
+            type:  float(64,IEEE)*
+        }
+
+        pRti_TIMERA_TTime
+        {
+            addr:  0x4804bf28
+            alias: "turnaroundTime"
+            flags: READONLY
+            type:  float(64,IEEE)*
+        }
+
+    endgroup
+
+endgroup
+
+group "Tunable Parameters"
+
+endgroup
+
+group "XIL API"
+
+    group "EESPort"
+
+        p_xilapi_eesport_activeerrorset_uint32_T
+        {
+            addr:  0x48049090
+            alias: "Active ErrorSet"
+            desc:  "Index of active ErrorSet or 0 if no ErrorSet is active."
+            flags: OUTPUT|READONLY
+            range: < 0 ; 4294967295 >
+            type:  uint(32)*
+        }
+
+        p_xilapi_eesport_erroractivated_uint32_T
+        {
+            addr:  0x4804908c
+            alias: "Error Activated"
+            desc:  "0 - no error is activated on hardware, 1 - at least one error is activated on hardware."
+            flags: OUTPUT|READONLY
+            range: < 0 ; 1 >
+            type:  uint(32)*
+        }
+
+        p_xilapi_eesport_errorswitching_uint32_T
+        {
+            addr:  0x48049088
+            alias: "Error Switching"
+            desc:  "0 - no switching operation running on hardware, 1 -  switching operation running on hardware."
+            flags: OUTPUT|READONLY
+            range: < 0 ; 1 >
+            type:  uint(32)*
+        }
+
+        xilapi_eesport_flags_uint32_T
+        {
+            addr:  0x4804bf94
+            alias: "Flags"
+            flags: OUTPUT|READONLY
+            range: < 0 ; 4294967295 >
+            type:  uint(32)
+        }
+
+        xilapi_eesport_trigger_uint32_T
+        {
+            addr:  0x4804bf90
+            alias: "Trigger"
+            flags: OUTPUT|READONLY
+            range: < 0 ; 4294967295 >
+            type:  uint(32)
+        }
+
+    endgroup
+
+endgroup
+
+

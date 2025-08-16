@@ -1,0 +1,62 @@
+% System parameters
+model.m = 1;            % Mass (kg)
+model.c = 0.05;         % Damping coefficient (Ns/m)
+model.k = 10;           % Stiffness (N/m)
+model.alpha = 1;        % Nonlinear stiffness coefficient (N/m^3)
+
+% model.m = 0.04;
+% model.c = 1.5874;
+% model.k = 1.0197e+04;
+% model.alpha = 42.5e+05;
+
+% experiment: outer loop parameters
+experiment.A_history = [];
+experiment.B_history = [];
+experiment.Am_history = [];
+experiment.Bm_history = [];
+experiment.A_target = [];
+experiment.B_target = [];
+experiment.t_span = [];
+experiment.X_less = [];
+
+% User Input parameters
+% input.F0 = 1;               % Initial forcing amplitude
+input.w0 = 2 * pi;          % Forcing frequency (rad/s)
+% input.w0 = 2*pi*37.6799;
+input.T = 2 * pi / input.w0;% Period
+input.f_control = 0;        % inner loop controller forcing
+input.f_history = [input.f_control];
+input.e_history = [0; 0];
+% input.A_desired = 0;
+% input.B_desired = 5;
+
+% Prepare trial variable history
+trial.t = [];
+trial.X = [];
+trial.dt = 1 / 1000; % Sampling period
+trial.t_length = 10;
+trial.t_span = (0:trial.dt:trial.t_length)';
+
+% Control parameters
+control.Kp = 0;        % Proportional gain
+control.Kd = 500;       % Derivative gain
+control.Ki = 0;
+control.error_vec = [0 0]';
+control.error_prev = [0 0]';
+% control.k_num = 7;   % finite number of harmonics
+
+
+% control.base_target = zeros(control.k_num, 2); %ref signal
+% control.base_target(1,:) = [input.A_desired, input.B_desired];
+% this will be the ref-error signal
+control.target_vec = control.base_target; % (7x2) 7 harmonics [A0 doenst count]
+
+
+% outer control loop
+% prev_error_vec = zeros(1, 2);
+
+% Initial conditions
+trial.x_init = [0, 0];
+trial.t_init = 0;
+trial.X_less = [trial.x_init];
+% trial.t_less = [trial.t_span];

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PID Controller</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Optional Centred Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PID Controller</h1>
+    <p>
+        The <strong>PID Controller</strong> provides proportional-integral-derivative (PID) control functionality for
+        real-time systems. It is designed to maintain optimal system performance by dynamically adjusting the control
+        output based on error feedback. The controller includes a built-in filtering mechanism to reduce high-frequency
+        content, improving system stability and robustness.
+    </p>
+
+    <h2>Functionality</h2>
+    <p>
+        The PID controller continuously computes control corrections using the proportional, integral, and derivative
+        terms. The proportional term reacts to present error, the integral term accounts for accumulated past errors,
+        and the derivative term anticipates future errors by considering the rate of change.
+    </p>
+
+    <h2>Inputs</h2>
+    <ul>
+        <li><strong>System Error:</strong> The difference between the desired setpoint and the measured system response.
+        </li>
+    </ul>
+
+    <h2>Outputs</h2>
+    <ul>
+        <li><strong>Control Output:</strong> The computed control signal applied to the system to minimise error.</li>
+    </ul>
+
+    <h2>Internal Variables</h2>
+    <p>
+        The PID controller has four tunable internal variables:
+    </p>
+    <ul>
+        <li><code>pid_var_kp</code> – The proportional gain. Determines how strongly the controller reacts to the
+            current error. Defaults to <code>0</code>.</li>
+        <li><code>pid_var_kd</code> – The derivative gain. Helps reduce oscillations by damping rapid error changes.
+            Defaults to <code>0</code>.</li>
+        <li><code>pid_var_ki</code> – The integral gain. Eliminates steady-state error by accumulating past errors.
+            Defaults to <code>0</code>.</li>
+        <li><code>pid_var_Fc</code> – The cutoff frequency (Hz) for the built-in filtering mechanism. Controls the
+            attenuation of high-frequency components in the derivative control. Defaults to <code>1</code>.</li>
+    </ul>
+
+    <h2>Usage Considerations</h2>
+    <ul>
+        <li>The proportional, integral, and derivative gains should be tuned carefully to achieve the desired control
+            performance without instability.</li>
+        <li>The filtering mechanism can be adjusted using <code>pid_var_Fc</code> to manage the influence of
+            high-frequency noise.</li>
+        <li>The controller is designed for real-time applications and should be used with an appropriate fixed sampling
+            rate.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        The PID controller is a robust and adaptive control solution, well-suited for real-time applications requiring
+        precise and stable system regulation. Its tunable parameters allow for flexible optimisation to meet specific
+        control objectives.
+    </p>
+</body>
+
+
+
+</html>

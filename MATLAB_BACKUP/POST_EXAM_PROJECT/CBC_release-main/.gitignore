@@ -1,0 +1,56 @@
+# Ignore Simulink Autosave Files
+*.asv
+
+# Ignore MATLAB Code Analyzer Reports
+*.rpt
+
+# Ignore MATLAB Figure Files
+*.fig
+
+# Ignore MATLAB Compiled Files and Packages
+*.mlappinstall
+*.mlpkginstall
+
+# Ignore Simulink Cache and Auto-Generated Files
+*.slxc
+*.slx.autosave
+*.mdl.autosave
+*.mdl.repair
+*.slx.recover
+*.slx~*
+*helpsearch-v4_en/
+
+# Ignore Simulink Temporary Files
+*_autosave.*
+*_backup.*
+*_old.*
+
+# Ignore Simulink Generated Code and Build Artifacts
+_codegen/
+*_grt_rtw/
+*_ert_rtw/
+slprj/
+
+# Ignore MATLAB Temporary Project Files
+*.tmproj
+
+# Ignore MATLAB Preferences and History Files
+*.matlab/
+.history.m
+
+# Ignore Simulink Report and Logs
+*.log
+*.txt
+*.out
+
+# Ignore MATLAB Backup Files
+*~
+*.bak
+
+# Ignore Windows System Files
+Thumbs.db
+desktop.ini
+
+# Ignore extracted project folders and dspace make folders
+*_protected/
+*_rti1202/

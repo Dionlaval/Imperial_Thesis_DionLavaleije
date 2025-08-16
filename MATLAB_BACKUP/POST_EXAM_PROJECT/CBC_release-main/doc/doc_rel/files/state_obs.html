@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>State Observer</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* Optional Centred Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>State Observer Block</h1>
+    <p>
+        The <strong>State Observer Block</strong> is designed to estimate system velocity based on measured displacement and acceleration. 
+        This block implements a discrete-time state observer using a mathematically derived state-space model, allowing for real-time estimation 
+        in control and signal processing applications.
+    </p>
+
+    <h2>Functionality</h2>
+    <p>
+        The observer reconstructs the velocity state of a system using a two-state model where displacement is measured directly, 
+        but velocity is inferred.
+    </p>
+
+    <h2>Inputs</h2>
+    <ul>
+        <li><strong>Displacement:</strong> The measured system displacement.</li>
+        <li><strong>Acceleration:</strong> The measured system acceleration.</li>
+    </ul>
+
+    <h2>Outputs</h2>
+    <ul>
+        <li><strong>Estimated Displacement:</strong> The estimated displacement (optional).</li>
+        <li><strong>Estimated Velocity:</strong> The estimated velocity, inferred using the state observer.</li>
+    </ul>
+
+    <h2>Internal Tunable Parameters</h2>
+    <p>
+        The State Observer Block has one internal tunable parameter:
+    </p>
+    <ul>
+        <li><code>stateobv_var_gain</code> – The continuous-time observer gain. Adjusts how aggressively the observer corrects state estimates.
+            Defaults to <code>[10, 30]</code>. Internally converted to discrete gains.</li>
+    </ul>
+
+    <h2>Usage Considerations</h2>
+    <ul>
+        <li>The observer is optimised for <strong>fixed-step discrete systems</strong></strong>.</li>
+        <li><code>stateobv_var_gain</code> should be tuned based on system dynamics to ensure fast convergence without excessive noise sensitivity.</li>
+        <li>The block is designed for real-time applications, ensuring reliable and stable velocity estimation in practical control systems.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        The State Observer Block provides a robust method for velocity estimation where direct velocity measurement is unavailable or impractical. 
+        With a single tunable parameter, it offers a simple yet effective solution for dynamic system estimation in industrial and control applications.
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<?xml version='1.0'?>
+<DP_SignalMap>
+<Platform>SignalCalc</Platform>
+<TestPath>d:\anya - urop - releasemechanism\dion_transferfunction_hammer.trf</TestPath>
+<MaxNumberChannels f="#2" />
+<InputChannels arraytype='small' datatype='int' length='2'>
+1 2 
+</InputChannels>
+<SignalGroups>
+<SigGrp0>
+<GroupName>Xx - Last Time History</GroupName>
+<Filename>Xx</Filename>
+<SigGroupType>Custom</SigGroupType>
+<RefChan f="#1" />
+</SigGrp0>
+<SigGrp1>
+<GroupName>Wx - Windowed Xx</GroupName>
+<Filename>Wx</Filename>
+<SigGroupType>Custom</SigGroupType>
+<RefChan f="#1" />
+</SigGrp1>
+<SigGrp2>
+<GroupName>Sx - Last Linear Spectrum</GroupName>
+<Filename>Sx</Filename>
+<SigGroupType>Custom</SigGroupType>
+<RefChan f="#1" />
+</SigGrp2>
+<SigGrp3>
+<GroupName>Sxx - Last Auto Power Spectrum</GroupName>
+<Filename>S</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxx</ChanType>
+<RefChan f="#1" />
+</SigGrp3>
+<SigGrp4>
+<GroupName>Sxy - Last Cross Power Spectrum</GroupName>
+<Filename>S</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxy</ChanType>
+<RefChan f="#1" />
+</SigGrp4>
+<SigGrp5>
+<GroupName>Gxx - Average Auto Power Spectrum</GroupName>
+<Filename>G</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxx</ChanType>
+<RefChan f="#1" />
+</SigGrp5>
+<SigGrp6>
+<GroupName>Gxy - Average Cross Power Spectrum</GroupName>
+<Filename>G</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxy</ChanType>
+<RefChan f="#1" />
+</SigGrp6>
+<SigGrp7>
+<GroupName>Hxy - Transfer Function</GroupName>
+<Filename>H</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxy</ChanType>
+<RefChan f="#1" />
+</SigGrp7>
+<SigGrp8>
+<GroupName>Cxy - Coherence Function</GroupName>
+<Filename>C</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxy</ChanType>
+<RefChan f="#1" />
+</SigGrp8>
+<SigGrp9>
+<GroupName>Zxy - Impulse Response Function</GroupName>
+<Filename>Z</Filename>
+<SigGroupType>Custom</SigGroupType>
+<ChanType>Fxy</ChanType>
+<RefChan f="#1" />
+</SigGrp9>
+<SigGrp10>
+<GroupName>Waterfall Signals</GroupName>
+<Filename>H1, 2WF</Filename>
+<SigGroupType>Custom</SigGroupType>
+<RefChan f="#1" />
+</SigGrp10>
+<SigGrp11>
+<GroupName>User Signals</GroupName>
+<SigGroupType>Custom</SigGroupType>
+<RefChan f="#1" />
+</SigGrp11>
+<SigGroupCount f="#c" />
+</SignalGroups>
+<SigInfo>
+<SignalInfo0>
+<GrpName>Xx - Last Time History</GrpName>
+<SignalName>X1</SignalName>
+<Filename>X1</Filename>
+</SignalInfo0>
+<SignalInfo1>
+<GrpName>Wx - Windowed Xx</GrpName>
+<SignalName>W1</SignalName>
+<Filename>W1</Filename>
+</SignalInfo1>
+<SignalInfo2>
+<GrpName>Sx - Last Linear Spectrum</GrpName>
+<SignalName>S1</SignalName>
+<Filename>S1</Filename>
+</SignalInfo2>
+<SignalInfo3>
+<GrpName>Sxx - Last Auto Power Spectrum</GrpName>
+<SignalName>S1, 1</SignalName>
+<Filename>S1, 1</Filename>
+</SignalInfo3>
+<SignalInfo4>
+<GrpName>Gxx - Average Auto Power Spectrum</GrpName>
+<SignalName>G1, 1</SignalName>
+<Filename>G1, 1</Filename>
+</SignalInfo4>
+<SignalInfo5>
+<GrpName>Sx - Last Linear Spectrum</GrpName>
+<SignalName>S2</SignalName>
+<Filename>S2</Filename>
+</SignalInfo5>
+<SignalInfo6>
+<GrpName>Wx - Windowed Xx</GrpName>
+<SignalName>W2</SignalName>
+<Filename>W2</Filename>
+</SignalInfo6>
+<SignalInfo7>
+<GrpName>Sxx - Last Auto Power Spectrum</GrpName>
+<SignalName>S2, 2</SignalName>
+<Filename>S2, 2</Filename>
+</SignalInfo7>
+<SignalInfo8>
+<GrpName>Sxy - Last Cross Power Spectrum</GrpName>
+<SignalName>S1, 2</SignalName>
+<Filename>S1, 2</Filename>
+</SignalInfo8>
+<SignalInfo9>
+<GrpName>Xx - Last Time History</GrpName>
+<SignalName>X2</SignalName>
+<Filename>X2</Filename>
+</SignalInfo9>
+<SignalInfo10>
+<GrpName>Gxx - Average Auto Power Spectrum</GrpName>
+<SignalName>G2, 2</SignalName>
+<Filename>G2, 2</Filename>
+</SignalInfo10>
+<SignalInfo11>
+<GrpName>Gxy - Average Cross Power Spectrum</GrpName>
+<SignalName>G1, 2</SignalName>
+<Filename>G1, 2</Filename>
+</SignalInfo11>
+<SignalInfo12>
+<GrpName>Hxy - Transfer Function</GrpName>
+<SignalName>H1, 2</SignalName>
+<Filename>H1, 2</Filename>
+</SignalInfo12>
+<SignalInfo13>
+<GrpName>Cxy - Coherence Function</GrpName>
+<SignalName>C1, 2</SignalName>
+<Filename>C1, 2</Filename>
+</SignalInfo13>
+<SignalInfo14>
+<GrpName>Zxy - Impulse Response Function</GrpName>
+<SignalName>Z1, 2</SignalName>
+<Filename>Z1, 2</Filename>
+</SignalInfo14>
+<SignalInfo15>
+<GrpName>Waterfall Signals</GrpName>
+<SignalName>H1, 2WF</SignalName>
+<Filename>H1, 2WF</Filename>
+</SignalInfo15>
+<SigInfoCount f="#10" />
+</SigInfo>
+</DP_SignalMap>

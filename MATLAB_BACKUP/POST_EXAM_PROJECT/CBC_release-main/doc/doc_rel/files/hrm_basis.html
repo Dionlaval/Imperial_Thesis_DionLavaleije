@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Harmonic Basis Block</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Headings */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ec5a16;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists */
+        dl {
+            margin-top: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Styling for inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        /* Styling for code blocks */
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Harmonic Basis Block</h1>
+    <p>
+        The <strong>Harmonic Basis</strong> block generates a harmonic signal composed of sine and cosine components.
+        This signal serves as a basis for use in adaptive filtering algorithms such as the Least Mean Squares (LMS) and
+        Recursive Least Squares (RLS) filters. The block outputs a structured harmonic waveform based on configurable
+        fundamental frequency and harmonic coefficients.
+    </p>
+
+    <h2>Functionality</h2>
+    <p>
+        The block computes a vector containing the sine and cosine components of a harmonic signal at predefined
+        harmonic frequencies. Specifically, the output consists of:
+    </p>
+    <pre><code>U = [DC, cos(1 × ωt), ..., cos(n × ωt), sin(1 × ωt), ..., sin(n × ωt)]</code></pre>
+    <p>
+        where <code>ω</code> is the fundamental frequency and <code>t</code> represents time.
+    </p>
+
+    <h2>Output Signal</h2>
+    <p>
+        The block outputs a fixed-size vector of <strong>1 × 17</strong>, consisting of:
+    </p>
+    <ul>
+        <li>DC component.</li>
+        <li>8 cosine components of harmonic frequencies.</li>
+        <li>8 sine components of harmonic frequencies.</li>
+    </ul>
+
+    <h2>Usage Considerations</h2>
+    <p>
+        The Harmonic Basis block is unprotected and fully configurable, allowing users to adjust the number of harmonics.
+        The generated signal can be used as an input to adaptive filters or other signal processing applications.
+    </p>    
+
+    <h2>Conclusion</h2>
+    <p>
+        The Harmonic Basis block is an essential component for generating structured harmonic signals, making it ideal
+        for applications requiring predefined sine and cosine basis functions.
+    </p>
+</body>
+
+</html>
